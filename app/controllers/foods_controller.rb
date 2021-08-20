@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
 
   def index
+    @foods = Food.order("created_at DESC")
   end
 
   def new
@@ -16,6 +17,10 @@ class FoodsController < ApplicationController
       render :new
     end
 
+  end
+
+  def search
+    @foods = Food.search(params[:keyword])
   end
 
   private

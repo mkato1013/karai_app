@@ -3,6 +3,28 @@
 <div class="main">
   <div class="food-contents">
   <h2 class="food-contents-title">最新のKARAI</h2>
+    <ul class="food-lists">
+      <% @foods.each do |food| %>
+        <li class="list">
+          <div class="food-img-content">
+          <%= link_to root_path do %>
+            <%= image_tag food.image, class: "food-img" if food.image.attached? %>
+            <div class="food-img-info">
+              <h2 class="shop-name">
+              <%= food.shop_name%>
+              </h2>
+              <h2 class="food-name">
+              <%= food.food_name%>
+              </h2>
+              <h3 class="food-spicylevel">
+              <%= food.spicy_level.name%>
+              </h3>
+            </div>
+          <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
@@ -16,6 +38,10 @@
   </div>
   <div class="menu-details">
     <h2 class="menu-content">検索</h2>
+    <%= form_with(url: search_foods_path, local: true, method: :get, class: "food-search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "food-search-input" %>
+      <%= form.submit "検索", class: "food-search-btn" %>
+    <% end %>
   </div>
   <div class="menu-details">
     <%= link_to(new_food_path, class: 'postfood-btn') do %>
