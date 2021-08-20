@@ -1,15 +1,21 @@
-<%= render "shared/header" %>
+<div class="mypage-contents">
+  <header class="mypege-header">
+  マイページ
+  </header>
 
-<div class="main">
-  <div class="food-contents">
-  <h2 class="food-contents-title">最新のKARAI</h2>
-  </div>
-</div>
+  <div class="mypage-main">
+    <h2 class="mypage-title">MY KARAI</h2>
+
+    
+
+
+<%# メインメニューバー %>
 
 <div class="menu-bar">
 
   <div class="menu-details">
     <h2 class="menu-content">ホーム</h2>
+    <%= link_to 'もどる', root_path, class:"back-btn" %>
   </div>
   <div class="menu-details">
     <h2 class="menu-content">メニュー</h2>
@@ -42,5 +48,5 @@
   </div>
 
 </div>
+<%# /メインメニューバー %>
 
-<%= render "shared/footer" %>

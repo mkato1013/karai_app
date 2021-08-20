@@ -4,10 +4,10 @@
   </header>
 
   <div class="postfood-main">
-    <h2 class="postfood-title">YOU ARE KARAI</h2>
+    <h2 class="postfood-title">YOUR KARAI</h2>
     <%= form_with model: @food, local: true do |f| %>
 
-    <%# <%= render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: f.object %>
 
   
     <%# 食べ物画像 %>
@@ -19,6 +19,7 @@
       <div class="click-upload">
         <%= f.file_field :image, id:"food-image" %>
       </div>
+      <%= image_tag @food.image.variant(resize: '200x200'), class: 'food-image' if @food.image.attached? %>
     </div>
     <%# /食べ物画像 %>
 
@@ -47,12 +48,12 @@
     <%# /店名 %>
 
     <%# メニュー名 %>
-    <div class="shop-menu">
-      <div class="menu-name">
+    <div class="food-name-all">
+      <div class="food-name">
         メニュー名
         <span class="indispensable">必須</span>
       </div>
-      <%= f.text_area :menu_name, class:"shop-menu-text", id:"menu-name", placeholder:"（100文字以内)", maxlength:"100" %>
+      <%= f.text_area :food_name, class:"food-name-text", id:"food-name", placeholder:"（100文字以内)", maxlength:"100" %>
     </div>
     <%# /店名とメニュー名 %>
 
@@ -115,7 +116,45 @@
     
     <% end %>
   </div>
+
   <footer class="postfood-footer">
       ©︎KARAI
   </footer>
+</div>
+
+<div class="menu-bar">
+
+  <div class="menu-details">
+    <h2 class="menu-content">ホーム</h2>
+  </div>
+  <div class="menu-details">
+    <h2 class="menu-content">メニュー</h2>
+  </div>
+  <div class="menu-details">
+    <h2 class="menu-content">検索</h2>
+  </div>
+  <div class="menu-details">
+    <%= link_to(new_food_path, class: 'postfood-btn') do %>
+      <span class='postfood-btn-text'>！！（KARAI）！！</span>
+      <%= image_tag 'sample.png' , size: '150x150' ,class: "purchase-btn-icon" %>
+    <% end %>
+  </div>
+  <div class="menu-details">
+    <h2 class="menu-content">マイページ</h2>
+  </div>
+  <div class="menu-details">
+    <h2 class="menu-content">AMAI</h2>
+  </div>
+  <div class="menu-details">
+    <ul class='lists-right'>
+    <% if user_signed_in? %>
+      <li><%= link_to current_user.nickname, user_path(current_user), class: "user-nickname" %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+    <% else %>
+      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
+      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
+    <% end %>
+    </ul>
+  </div>
+
 </div>
