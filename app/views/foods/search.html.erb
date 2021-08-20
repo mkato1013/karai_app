@@ -1,10 +1,4 @@
-<div class="menu-details">
-  <h2 class="menu-content">検索</h2>
-  <%= form_with(url: search_foods_path, local: true, method: :get, class: "food-search-form") do |form| %>
-    <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "food-search-input" %>
-    <%= form.submit "検索", class: "food-search-btn" %>
-  <% end %>
-</div>
+
 
 <div class="main">
   <div class="food-contents">
@@ -40,13 +34,23 @@
 
   <div class="menu-details">
     <h2 class="menu-content">ホーム</h2>
+    <%# 下部ボタン %>
+      <div class="postfood-btn-contents">
+        <%=link_to 'もどる', root_path, class:"back-btn" %>
+      </div>
+    <%# /下部ボタン %>
   </div>
   <div class="menu-details">
     <h2 class="menu-content">メニュー</h2>
   </div>
   <div class="menu-details">
     <h2 class="menu-content">検索</h2>
+    <%= form_with(url: search_foods_path, local: true, method: :get, class: "food-search-form") do |form| %>
+      <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "food-search-input" %>
+      <%= form.submit "検索", class: "food-search-btn" %>
+    <% end %>
   </div>
+
   <div class="menu-details">
     <%= link_to(new_food_path, class: 'postfood-btn') do %>
       <span class='postfood-btn-text'>！！（KARAI）！！</span>
@@ -72,3 +76,9 @@
   </div>
 
 </div>
+
+<%# 下部ボタン %>
+    <div class="postfood-btn-contents">
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+<%# /下部ボタン %>

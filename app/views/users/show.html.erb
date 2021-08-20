@@ -5,6 +5,30 @@
 
   <div class="mypage-main">
     <h2 class="mypage-title">MY KARAI</h2>
+      <div class="contents row">
+      <p><%= @nickname %>さんの投稿一覧</p>
+      <% @foods.each do |food| %>
+        <li class="list">
+          <div class="food-img-content">
+          <%= link_to root_path do %>
+            <%= image_tag food.image, class: "food-img" if food.image.attached? %>
+            <div class="food-img-info">
+              <h2 class="shop-name">
+              <%= food.shop_name%>
+              </h2>
+              <h2 class="food-name">
+              <%= food.food_name%>
+              </h2>
+              <h3 class="food-spicylevel">
+              <%= food.spicy_level.name%>
+              </h3>
+            </div>
+          <% end %>
+          </div>
+        </li>
+      <% end %>
+      </div>
+  </div>
 
     
 
