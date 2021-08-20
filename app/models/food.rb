@@ -3,6 +3,14 @@ class Food < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
+  def self.search(search)
+    if search != ""
+      Food.where("food_name LIKE(?)", "%#{search}%")
+    else
+      Food.all
+    end
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :meal_type
   belongs_to :spicy_level
