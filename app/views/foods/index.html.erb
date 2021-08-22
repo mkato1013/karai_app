@@ -7,7 +7,7 @@
       <% @foods.each do |food| %>
         <li class="list">
           <div class="food-img-content">
-          <%= link_to root_path do %>
+          <%= link_to food_path(food) do %>
             <%= image_tag food.image, class: "food-img" if food.image.attached? %>
             <div class="food-img-info">
               <h2 class="shop-name">
