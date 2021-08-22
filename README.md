@@ -22,19 +22,24 @@
 
 
 ## foods テーブル
+<!-- もっと楽に投稿できるようにした方がめんどくさいと思われず、楽で良いと考えているため「null: false」は最小限に留めたい -->
+<!-- food_commentに味や金額を入れれるようにする？ -->
+<!-- meal_type_idは不要？みたらわかるし -->
+<!-- shop_moodは点数にする？というか必要？コメントに書けば良いのでは？ -->
+<!-- waiting_timeもidではなくても良いのでは？ -->
+<!-- 最悪店の名前だけ分かれば良いのでは？ -->
 
 | Column          | Type       | Options                      |
 | --------------- | ---------- | ---------------------------- |
-| meal_type_id    | integer    | null: false                  |
+| meal_type_id    | integer    |                              |
 | shop_name       | string     | null: false                  |
-| shop_name_kana  | string     | null: false                  |
+| shop_name_kana  | string     |                              |
 | food_name       | string     | null: false                  |
-| food_price      | string     | null: false                  |
 | spicy_level_id  | integer    | null: false                  |
-| taste_id        | integer    | null: false                  |
-| station         | string     | null: false                  |
-| shop_mood_id    | integer    | null: false                  |
-| waiting_time_id | integer    | null: false                  |
+| station         | string     |                              |
+| shop_mood_id    | integer    |                              |
+| waiting_time_id | integer    |                              |
+| food_comment    | text       |                              |
 | user            | references | null:false, foreign_key:true |
 
 ### Association
@@ -72,12 +77,12 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key:true  |
-| item          | references | null: false, foreign_key:true  |
+| food          | references | null: false, foreign_key:true  |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :item
+- belongs_to :food
 
 ## relationships テーブル
 
