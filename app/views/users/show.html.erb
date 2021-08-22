@@ -10,8 +10,24 @@
       <% @foods.each do |food| %>
         <li class="list">
           <div class="food-img-content">
-          <%= link_to root_path do %>
             <%= image_tag food.image, class: "food-img" if food.image.attached? %>
+
+            <div class="food-img-content-more">
+              <ul class="more_list">
+                <li>
+                  <%= link_to '詳細', food_path(food.id), method: :get %>
+                </li>
+                <% if user_signed_in? && current_user.id == food.user_id %>
+                  <li>
+                    <%= link_to '編集', edit_food_path(food.id), method: :get %>
+                  </li>
+                  <li>
+                    <%= link_to '削除', food_path(food.id), method: :delete %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+
             <div class="food-img-info">
               <h2 class="shop-name">
               <%= food.shop_name%>
@@ -23,7 +39,6 @@
               <%= food.spicy_level.name%>
               </h3>
             </div>
-          <% end %>
           </div>
         </li>
       <% end %>

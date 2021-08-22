@@ -23,6 +23,34 @@ class FoodsController < ApplicationController
     @foods = Food.search(params[:keyword])
   end
 
+  def edit
+    @food = Food.find(params[:id])
+    return redirect_to user_path if current_user.id != @food.user.id
+  end
+
+  def update
+    @food = Food.find(params[:id])
+    return redirect_to user_path if current_user.id != @food.user.id
+    
+    if @food.update(food_params)
+      redirect_to user_path
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @food = Food.find(params[:id])
+  end
+
+  def destroy
+    @food = Food.find(params[:id])
+    return redirect_to user_path if current_user.id != @food.user.id
+    
+    @food.destroy
+    redirect_to user_path
+  end
+
   private
 
   def food_params

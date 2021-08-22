@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
   def show
-    user = User.find(params[:id])
+    food = Food.find(params[:id])
+    user = User.find(food.user.id)
     @nickname = user.nickname
     @foods = user.foods
   end
+
 end
